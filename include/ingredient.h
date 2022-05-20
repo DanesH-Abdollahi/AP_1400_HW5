@@ -7,7 +7,7 @@ class Ingredient {
 public:
     double get_price_unit() { return price_unit; };
     size_t get_units() { return units; };
-    std::string get_name();
+    virtual std::string get_name() = 0; // Pure virtual function
 
     double price() { return price_unit * units; };
 
