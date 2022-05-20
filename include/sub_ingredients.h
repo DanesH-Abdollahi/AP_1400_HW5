@@ -12,7 +12,7 @@ public:
         name = "Cinnamon";
     }
 
-    virtual std::string get_name() override { return this->name; } // Nedd virtual ?
+    virtual std::string get_name() override { return this->name; } // Need virtual ?
 };
 //----------------------------------------------------------------------------------
 class Chocolate : public Ingredient {
