@@ -2,6 +2,7 @@
 #define ESPRESSO_BASED_H
 
 #include "ingredient.h"
+#include "sub_ingredients.h"
 #include <iostream>
 #include <string>
 #include <vector>

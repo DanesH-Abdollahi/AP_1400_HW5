@@ -11,7 +11,7 @@ class Cappuccino : public EspressoBased {
 public:
     Cappuccino(); // Default constructor
     Cappuccino(const Cappuccino& cap); // Copy constructor
-    ~Cappuccino(); // Destructor
+    virtual ~Cappuccino(); // Destructor
     void operator=(const Cappuccino& cap);
 
     virtual std::string get_name() const override { return name; }
