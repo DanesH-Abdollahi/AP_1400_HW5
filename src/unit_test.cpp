@@ -132,5 +132,3 @@ TEST(HW5Test, TEST12)
     Mocha mocha {};
     mocha.brew();
 }
-/*
- */

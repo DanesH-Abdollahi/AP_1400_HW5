@@ -2,7 +2,6 @@
 
 Mocha::~Mocha()
 {
-    // std::cout << "haminjaaa" << std::endl;
     for (const auto& i : side_items)
         delete i;
 
@@ -11,16 +10,13 @@ Mocha::~Mocha()
 //----------------------------------------------------------------------------------
 Mocha::Mocha()
     : EspressoBased()
+    , side_items {}
 {
-    // for (auto& integ : { new Espresso { 2 }, new Milk { 2 }, new MilkFoam { 1 } })
 
     ingredients.push_back(new Espresso { 2 });
     ingredients.push_back(new Chocolate { 1 });
     ingredients.push_back(new Milk { 2 });
     ingredients.push_back(new MilkFoam { 1 });
-
-    // for (size_t i; i < side_items.size(); i++)
-    //     side_items[i] = nullptr;
 
     name = "Mocha";
 }
@@ -29,7 +25,6 @@ Mocha::Mocha(const Mocha& moc)
     : EspressoBased { moc }
 
 {
-
     side_items.clear();
 
     for (const auto& item : moc.side_items) {
@@ -67,8 +62,6 @@ void Mocha::operator=(const Mocha& moc) // Copy Version
         for (const auto& i : side_items)
             delete i;
         side_items.clear();
-
-        // EspressoBased::operator=(cap);
 
         for (const auto& item : moc.side_items) {
             std::string Temp_Name { item->get_name() };

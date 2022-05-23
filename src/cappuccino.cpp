@@ -10,15 +10,12 @@ Cappuccino::~Cappuccino()
 //----------------------------------------------------------------------------------
 Cappuccino::Cappuccino()
     : EspressoBased()
+    , side_items {}
 {
-    // for (auto& integ : { new Espresso { 2 }, new Milk { 2 }, new MilkFoam { 1 } })
 
     ingredients.push_back(new Espresso { 2 });
     ingredients.push_back(new Milk { 2 });
     ingredients.push_back(new MilkFoam { 1 });
-
-    // for (size_t i; i < side_items.size(); i++)
-    //     side_items[i] = nullptr;
 
     name = "Cappuccino";
 }
@@ -65,8 +62,6 @@ void Cappuccino::operator=(const Cappuccino& cap) // Copy Version
         for (const auto& i : side_items)
             delete i;
         side_items.clear();
-
-        // EspressoBased::operator=(cap);
 
         for (const auto& item : cap.side_items) {
             std::string Temp_Name { item->get_name() };

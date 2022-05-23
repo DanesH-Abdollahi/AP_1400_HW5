@@ -9,8 +9,6 @@
 
 #include "ingredient.h"
 #include "sub_ingredients.h"
-#include <chrono>
-#include <cmath>
 #include <ftxui/dom/elements.hpp>
 #include <iostream>
 #include <numeric>
@@ -18,9 +16,6 @@
 #include <thread>
 #include <unistd.h>
 #include <vector>
-// #include <windows.h>
-
-using namespace ftxui;
 
 class EspressoBased {
 public:
@@ -33,7 +28,7 @@ public:
     virtual ~EspressoBased(); // Destructor // Virtual ?!
 
 protected:
-    EspressoBased(); // Default constructor
+    EspressoBased() = default; // Default constructor
     EspressoBased(const EspressoBased& esp); // Copy constructor
     void operator=(const EspressoBased& esp);
 
