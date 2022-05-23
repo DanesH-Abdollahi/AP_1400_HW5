@@ -5,8 +5,8 @@
 #include "ftxui/dom/node.hpp"
 #include "ftxui/screen/box.hpp"
 #include "ftxui/screen/color.hpp"
-#include "ftxui/screen/screen.hpp"
 #include "ftxui/screen/terminal.hpp"
+
 #include "ingredient.h"
 #include "sub_ingredients.h"
 #include <chrono>

@@ -14,56 +14,53 @@ int main(int argc, char** argv)
         using namespace std::chrono_literals;
 
         std::string reset_position;
-        for (float percentage = 0.0f; percentage <= 1.0f; percentage += 0.002f) {
-            std::string data_downloaded = std::to_string(int(percentage * 5000)) + "/5000";
+        for (float percentage = 0.0f; percentage <= 1.001f; percentage += 0.001f) {
 
+            std::string Percentage_disp = std::to_string(int(percentage * 100)) + "/100";
             auto gauge_up = //
                 hbox({
-                    vtext("gauge vertical"),
-                    separator(),
-                    gaugeUp(percentage),
-                })
-                | border;
 
-            auto gauge_down = //
-                hbox({
-                    vtext("gauge vertical"),
-                    separator(),
-                    gaugeDown(percentage),
-                })
-                | border;
-
-            auto gauge_right = //
-                vbox({
-                    text("gauge horizontal"),
-                    separator(),
-                    gaugeRight(percentage),
-                })
-                | border;
-
-            auto gauge_left = //
-                vbox({
-                    text("gauge horizontal"),
-                    separator(),
-                    gaugeLeft(percentage),
-                })
-                | border;
+                    hbox({ text("Brewing : ") | center,
+                        text("Milk  ") | center }),
+                    hbox({
+                        gaugeUp(percentage) | ftxui::color(ftxui::Color::Yellow),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                        gaugeUp(percentage),
+                    }) | border,
+                });
 
             auto document = hbox({
                 gauge_up,
-                filler(),
+                text("  "),
                 vbox({
-                    gauge_right,
                     filler(),
-                    text(data_downloaded) | border | center,
+                    text(Percentage_disp),
                     filler(),
-                    gauge_left,
                 }),
-                filler(),
-                gauge_down,
             });
 
-            auto screen = Screen(32, 16);
+            auto screen = Screen(50, 18);
+
             Render(screen, document);
             std::cout << reset_position;
             screen.Print();

@@ -22,8 +22,7 @@ Mocha::Mocha()
     // for (size_t i; i < side_items.size(); i++)
     //     side_items[i] = nullptr;
 
-    name
-        = "Mocha";
+    name = "Mocha";
 }
 //----------------------------------------------------------------------------------
 Mocha::Mocha(const Mocha& moc)

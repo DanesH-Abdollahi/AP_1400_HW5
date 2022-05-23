@@ -149,28 +149,82 @@ void EspressoBased::brew()
     for (size_t iter { 1 }; iter <= Percentages.size(); iter++) {
         for (double Percentage { Add_Percentages[iter - 1] }; Percentage <= Add_Percentages[iter]; Percentage += 0.01) {
 
-            std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
-            Element Gauge { ftxui::hbox({
-                ftxui::text("Brewing : " + Names[iter - 1] + " : " + std::string(Fixed_Len - Names[iter - 1].length(), ' ')) | ftxui::color(ftxui::Color::Yellow),
-                ftxui::gauge(Percentage) | ftxui::flex | ftxui::color(ftxui::Color::GrayLight),
-                ftxui::text(" " + Percentage_disp) | ftxui::color(ftxui::Color::White),
-            }) };
-            auto Gauge_Screen { ftxui::Screen::Create(
-                Dimension::Fit(Heading), // Width
-                Dimension::Fit(Gauge) // Height
-                ) };
+            // std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
+            // Element Gauge { ftxui::hbox({
+            //     ftxui::text("Brewing : " + Names[iter - 1] + " : " + std::string(Fixed_Len - Names[iter - 1].length(), ' ')) | ftxui::color(ftxui::Color::Yellow),
+            //     ftxui::gauge(Percentage) | ftxui::flex | ftxui::color(ftxui::Color::GrayLight),
+            //     ftxui::text(" " + Percentage_disp) | ftxui::color(ftxui::Color::White),
+            // }) };
+            // auto Gauge_Screen { ftxui::Screen::Create(
+            //     Dimension::Fit(Heading), // Width
+            //     Dimension::Fit(Gauge) // Height
+            //     ) };
 
-            ftxui::Render(Gauge_Screen, Gauge);
+            // ftxui::Render(Gauge_Screen, Gauge);
+            // std::cout << reset_position;
+            // Gauge_Screen.Print();
+            // reset_position = Gauge_Screen.ResetPosition();
+            // // std::cout << std::endl;
+            // usleep(80000); // Time in Microseconds
+            // Gauge_Screen.ResetPosition();
+
+            std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
+            Element Gauge { //
+                hbox({
+
+                    hbox({
+                        text(" Brewing : ") | center | ftxui::color(ftxui::Color::Yellow),
+                        text(Names[iter - 1] + std::string(Fixed_Len - Names[iter - 1].length(), ' ')) | center | ftxui::color(ftxui::Color::White),
+                    }),
+
+                    hbox({
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                        gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
+                    })
+                        | border,
+                    text("  "),
+                    vbox({
+                        filler(),
+                        text(Percentage_disp) | ftxui::color(ftxui::Color::White),
+                        filler(),
+                    }),
+
+                })
+            };
+
+            auto Gauge_Screen = Screen(60, 18);
+
+            Render(Gauge_Screen, Gauge);
             std::cout << reset_position;
             Gauge_Screen.Print();
             reset_position = Gauge_Screen.ResetPosition();
-            // std::cout << std::endl;
-            usleep(80000); // Time in Microseconds
-            Gauge_Screen.ResetPosition();
+            usleep(100000); // Time in Microseconds
         }
-        std::cout << std::endl;
-        std::cout << std::endl;
     }
+
+    std::cout << std::endl;
+    std::cout << std::endl;
 
     ftxui::Element End {
         ftxui::hbox({ ftxui::text(" Your Coffee Is Raedy. Enjoy Ur Coffee :) ") | ftxui::borderDouble | ftxui::color(ftxui::Color::Green) })
