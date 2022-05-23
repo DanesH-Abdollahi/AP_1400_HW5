@@ -4,14 +4,14 @@
 #include "ingredient.h"
 #include <string>
 
-#define DEFCLASS(class_name, per_unit)                  \
+#define DEFCLASS(Class_Name, Per_Unit_Price)            \
                                                         \
-    class class_name : public Ingredient {              \
+    class Class_Name : public Ingredient {              \
     public:                                             \
-        class_name(size_t units)                        \
-            : Ingredient { per_unit, units }            \
+        Class_Name(size_t units)                        \
+            : Ingredient { Per_Unit_Price, units }      \
         {                                               \
-            name = #class_name;                         \
+            name = #Class_Name;                         \
         }                                               \
         virtual std::string get_name() { return name; } \
     };

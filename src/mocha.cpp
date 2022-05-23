@@ -15,14 +15,15 @@ Mocha::Mocha()
     // for (auto& integ : { new Espresso { 2 }, new Milk { 2 }, new MilkFoam { 1 } })
 
     ingredients.push_back(new Espresso { 2 });
+    ingredients.push_back(new Chocolate { 1 });
     ingredients.push_back(new Milk { 2 });
     ingredients.push_back(new MilkFoam { 1 });
-    ingredients.push_back(new Chocolate { 1 });
 
     // for (size_t i; i < side_items.size(); i++)
     //     side_items[i] = nullptr;
 
-    name = "Mocha";
+    name
+        = "Mocha";
 }
 //----------------------------------------------------------------------------------
 Mocha::Mocha(const Mocha& moc)

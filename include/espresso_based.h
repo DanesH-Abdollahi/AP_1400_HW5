@@ -1,11 +1,26 @@
 #ifndef ESPRESSO_BASED_H
 #define ESPRESSO_BASED_H
 
+#include "ftxui/dom/flexbox_config.hpp"
+#include "ftxui/dom/node.hpp"
+#include "ftxui/screen/box.hpp"
+#include "ftxui/screen/color.hpp"
+#include "ftxui/screen/screen.hpp"
+#include "ftxui/screen/terminal.hpp"
 #include "ingredient.h"
 #include "sub_ingredients.h"
+#include <chrono>
+#include <cmath>
+#include <ftxui/dom/elements.hpp>
 #include <iostream>
+#include <numeric>
 #include <string>
+#include <thread>
+#include <unistd.h>
 #include <vector>
+// #include <windows.h>
+
+using namespace ftxui;
 
 class EspressoBased {
 public:
