@@ -146,25 +146,6 @@ void EspressoBased::brew()
         for (double Percentage { Add_Percentages[iter - 1] }; Percentage <= Add_Percentages[iter]; Percentage += 0.01) {
             Cup_percent[iter - 1] = (Percentage - Add_Percentages[iter - 1]) * (1.0 / (Add_Percentages[iter] - Add_Percentages[iter - 1]));
 
-            // std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
-            // Element Gauge { ftxui::hbox({
-            //     ftxui::text("Brewing : " + Names[iter - 1] + " : " + std::string(Fixed_Len - Names[iter - 1].length(), ' ')) | ftxui::color(ftxui::Color::Yellow),
-            //     ftxui::gauge(Percentage) | ftxui::flex | ftxui::color(ftxui::Color::GrayLight),
-            //     ftxui::text(" " + Percentage_disp) | ftxui::color(ftxui::Color::White),
-            // }) };
-            // auto Gauge_Screen { ftxui::Screen::Create(
-            //     Dimension::Fit(Heading), // Width
-            //     Dimension::Fit(Gauge) // Height
-            //     ) };
-
-            // ftxui::Render(Gauge_Screen, Gauge);
-            // std::cout << reset_position;
-            // Gauge_Screen.Print();
-            // reset_position = Gauge_Screen.ResetPosition();
-            // // std::cout << std::endl;
-            // usleep(80000); // Time in Microseconds
-            // Gauge_Screen.ResetPosition();
-
             std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
             ftxui::Element Gauge {};
 
