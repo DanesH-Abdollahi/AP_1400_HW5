@@ -137,11 +137,14 @@ void EspressoBased::brew()
     std::cout << std::endl;
     std::cout << std::endl;
 
+    std::vector<double> Cup_percent(Names.size());
+
     std::string reset_position;
     int Fixed_Len { 13 };
 
     for (size_t iter { 1 }; iter <= Percentages.size(); iter++) {
         for (double Percentage { Add_Percentages[iter - 1] }; Percentage <= Add_Percentages[iter]; Percentage += 0.01) {
+            Cup_percent[iter - 1] = (Percentage - Add_Percentages[iter - 1]) * (1.0 / (Add_Percentages[iter] - Add_Percentages[iter - 1]));
 
             // std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
             // Element Gauge { ftxui::hbox({
@@ -163,50 +166,227 @@ void EspressoBased::brew()
             // Gauge_Screen.ResetPosition();
 
             std::string Percentage_disp = std::to_string(int(Percentage * 100)) + "/100";
-            ftxui::Element Gauge { //
-                ftxui::hbox({
+            ftxui::Element Gauge {};
+
+            if (this->get_name() == "Mocha") {
+                Gauge = ftxui::hbox({
                     ftxui::hbox({
                         ftxui::text(" Brewing : ") | ftxui::center | ftxui::color(ftxui::Color::Yellow),
                         ftxui::text(Names[iter - 1] + std::string(Fixed_Len - Names[iter - 1].length(), ' ')) | ftxui::center | ftxui::color(ftxui::Color::White),
                     }),
+                    ftxui::vbox({
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                            ftxui::gaugeUp(Cup_percent[3]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[3] * 2),
+                        }) | ftxui::flex,
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                        }) | ftxui::flex,
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::Red) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                        }) | ftxui::flex,
 
-                    ftxui::hbox({
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                        ftxui::gaugeUp(Percentage) | ftxui::color(ftxui::Color::Cyan),
-                    })
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                        }) | ftxui::flex,
+
+                    }) | ftxui::center
                         | ftxui::border,
+
                     ftxui::text("  "),
                     ftxui::vbox({
-                        ftxui::filler(),
                         ftxui::text(Percentage_disp) | ftxui::color(ftxui::Color::White),
-                        ftxui::filler(),
+                    }) | ftxui::center,
+
+                });
+            }
+
+            else {
+                Gauge = ftxui::hbox({
+                    ftxui::hbox({
+                        ftxui::text(" Brewing : ") | ftxui::center | ftxui::color(ftxui::Color::Yellow),
+                        ftxui::text(Names[iter - 1] + std::string(Fixed_Len - Names[iter - 1].length(), ' ')) | ftxui::center | ftxui::color(ftxui::Color::White),
                     }),
+                    ftxui::vbox({
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                            ftxui::gaugeUp(Cup_percent[2]) | ftxui::color(ftxui::Color::GrayDark) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[2] * 2),
+                        }) | ftxui::flex,
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                            ftxui::gaugeUp(Cup_percent[1]) | ftxui::color(ftxui::Color::White) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[1] * 2),
+                        }) | ftxui::flex,
 
-                })
-            };
+                        ftxui::hbox({
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                            ftxui::gaugeUp(Cup_percent[0]) | ftxui::color(ftxui::Color::Blue) | ftxui::flex | ftxui::size(ftxui::HEIGHT, ftxui::EQUAL, Numbers[0] * 2),
+                        }) | ftxui::flex,
 
-            auto Gauge_Screen = ftxui::Screen(60, 18);
+                    }) | ftxui::center
+                        | ftxui::borderDouble,
+
+                    ftxui::text("  "),
+                    ftxui::vbox({
+                        ftxui::text(Percentage_disp) | ftxui::color(ftxui::Color::White),
+                    }) | ftxui::center,
+
+                });
+            }
+            // auto Gauge_Screen = ftxui::Screen(60, 12);
+            auto Gauge_Screen = ftxui::Screen::Create(
+                ftxui::Dimension::Fit(Heading), // Width
+                ftxui::Dimension::Fit(Gauge) // Height
+            );
 
             ftxui::Render(Gauge_Screen, Gauge);
             std::cout << reset_position;
