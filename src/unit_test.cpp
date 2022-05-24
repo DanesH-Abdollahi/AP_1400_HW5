@@ -61,7 +61,7 @@ TEST(HW5Test, TEST5)
     Cappuccino cappuccino {};
     EXPECT_DOUBLE_EQ(cappuccino.price(), 55);
     cappuccino.add_side_item(new Cinnamon { 1 });
-    // EXPECT_DOUBLE_EQ(cappuccino.price(), 60);
+    EXPECT_DOUBLE_EQ(cappuccino.price(), 60);
 }
 
 TEST(HW5Test, TEST6)
