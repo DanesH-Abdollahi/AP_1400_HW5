@@ -1,6 +1,6 @@
 #include "mocha.h"
 
-Mocha::~Mocha()
+Mocha::~Mocha() // Destructor
 {
     for (const auto& i : side_items)
         delete i;
@@ -8,11 +8,11 @@ Mocha::~Mocha()
     side_items.clear();
 }
 //----------------------------------------------------------------------------------
-Mocha::Mocha()
+Mocha::Mocha() // Default constructor
     : EspressoBased()
     , side_items {}
 {
-
+    // Add the Main Mocha Sub_ingredients
     ingredients.push_back(new Espresso { 2 });
     ingredients.push_back(new Chocolate { 1 });
     ingredients.push_back(new Milk { 2 });
@@ -21,15 +21,15 @@ Mocha::Mocha()
     name = "Mocha";
 }
 //----------------------------------------------------------------------------------
-Mocha::Mocha(const Mocha& moc)
-    : EspressoBased { moc }
+Mocha::Mocha(const Mocha& moc) // Copy constructor
+    : EspressoBased { moc } // Copy the base class
 
 {
-    side_items.clear();
-
     for (const auto& item : moc.side_items) {
         std::string Temp_Name { item->get_name() };
         size_t Temp_Units { item->get_units() };
+
+        // Add the New_Side_items to the Side_items vector
         if (Temp_Name == "Cinnamon")
             side_items.push_back(new Cinnamon { Temp_Units });
 
@@ -56,16 +56,18 @@ Mocha::Mocha(const Mocha& moc)
     }
 }
 //----------------------------------------------------------------------------------
-void Mocha::operator=(const Mocha& moc) // Copy Version
+void Mocha::operator=(const Mocha& moc) // Copy Version of Operator =
 {
-    if (this != &moc) {
+    if (this != &moc) { // Check if the object is not the same
         for (const auto& i : side_items)
             delete i;
-        side_items.clear();
+        side_items.clear(); // Delete the current side_items
 
         for (const auto& item : moc.side_items) {
             std::string Temp_Name { item->get_name() };
             size_t Temp_Units { item->get_units() };
+
+            // Add the New_Side_items to the Side_items vector
             if (Temp_Name == "Cinnamon")
                 side_items.push_back(new Cinnamon { Temp_Units });
 
@@ -110,4 +112,3 @@ double Mocha::price() const
 
     return Totall_Price;
 }
-//----------------------------------------------------------------------------------

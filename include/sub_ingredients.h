@@ -4,6 +4,8 @@
 #include "ingredient.h"
 #include <string>
 
+// Define All Sub_Ingredients Classes With Macro
+
 #define DEFCLASS(Class_Name, Per_Unit_Price)            \
                                                         \
     class Class_Name : public Ingredient {              \

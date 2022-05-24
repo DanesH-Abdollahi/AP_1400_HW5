@@ -1,19 +1,20 @@
 #include "espresso_based.h"
 
-EspressoBased::~EspressoBased()
+EspressoBased::~EspressoBased() // Destructor
 {
     for (const auto& i : ingredients)
         delete i;
-    ingredients.clear();
+    ingredients.clear(); // Clear the  Ingredients vector
 }
 //----------------------------------------------------------------------------------
-EspressoBased::EspressoBased(const EspressoBased& esp)
+EspressoBased::EspressoBased(const EspressoBased& esp) // Copy Constructor
     : name { esp.name }
 {
-    ingredients.clear();
     for (const auto& item : esp.ingredients) {
         std::string Temp_Name { item->get_name() };
         size_t Temp_Units { item->get_units() };
+
+        // Add the New Sub_ingredient to the Ingredients vector
         if (Temp_Name == "Cinnamon")
             ingredients.push_back(new Cinnamon { Temp_Units });
 
@@ -40,18 +41,20 @@ EspressoBased::EspressoBased(const EspressoBased& esp)
     }
 }
 //----------------------------------------------------------------------------------
-void EspressoBased::operator=(const EspressoBased& esp)
+void EspressoBased::operator=(const EspressoBased& esp) // = Operator ( Copy Version )
 {
-    if (this != &esp) {
+    if (this != &esp) { // Check if the object is not the same
         name = esp.name;
 
         for (const auto& i : ingredients)
-            delete i;
+            delete i; // Delete the current ingredients
         ingredients.clear();
 
         for (const auto& item : esp.ingredients) {
             std::string Temp_Name { item->get_name() };
             size_t Temp_Units { item->get_units() };
+
+            // Add the New Sub_ingredient to the Ingredients vector
             if (Temp_Name == "Cinnamon")
                 ingredients.push_back(new Cinnamon { Temp_Units });
 

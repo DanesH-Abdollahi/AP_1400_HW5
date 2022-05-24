@@ -1,18 +1,17 @@
 #include "cappuccino.h"
-Cappuccino::~Cappuccino()
+Cappuccino::~Cappuccino() // Destructor
 {
-    // std::cout << "haminjaaa" << std::endl;
     for (const auto& i : side_items)
         delete i;
 
-    side_items.clear();
+    side_items.clear(); // Clear the Side_items vector
 }
 //----------------------------------------------------------------------------------
-Cappuccino::Cappuccino()
+Cappuccino::Cappuccino() // Default constructor
     : EspressoBased()
     , side_items {}
 {
-
+    // Add the Main Cappucchino Sub_ingredients
     ingredients.push_back(new Espresso { 2 });
     ingredients.push_back(new Milk { 2 });
     ingredients.push_back(new MilkFoam { 1 });
@@ -20,16 +19,15 @@ Cappuccino::Cappuccino()
     name = "Cappuccino";
 }
 //----------------------------------------------------------------------------------
-Cappuccino::Cappuccino(const Cappuccino& cap)
-    : EspressoBased { cap }
+Cappuccino::Cappuccino(const Cappuccino& cap) // Copy constructor
+    : EspressoBased { cap } // Copy the base class
 
 {
-
-    side_items.clear();
-
     for (const auto& item : cap.side_items) {
         std::string Temp_Name { item->get_name() };
         size_t Temp_Units { item->get_units() };
+
+        // Add the New_Side_items to the Side_items vector
         if (Temp_Name == "Cinnamon")
             side_items.push_back(new Cinnamon { Temp_Units });
 
@@ -56,16 +54,18 @@ Cappuccino::Cappuccino(const Cappuccino& cap)
     }
 }
 //----------------------------------------------------------------------------------
-void Cappuccino::operator=(const Cappuccino& cap) // Copy Version
+void Cappuccino::operator=(const Cappuccino& cap) // Copy Version Of Operator =
 {
-    if (this != &cap) {
+    if (this != &cap) { // Check if the object is not the same
         for (const auto& i : side_items)
-            delete i;
+            delete i; // Delete the current side_items
         side_items.clear();
 
         for (const auto& item : cap.side_items) {
             std::string Temp_Name { item->get_name() };
             size_t Temp_Units { item->get_units() };
+
+            // Add the New_Side_items to the Side_items vector
             if (Temp_Name == "Cinnamon")
                 side_items.push_back(new Cinnamon { Temp_Units });
 
@@ -110,4 +110,3 @@ double Cappuccino::price() const
 
     return Totall_Price;
 }
-//----------------------------------------------------------------------------------

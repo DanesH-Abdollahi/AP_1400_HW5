@@ -17,7 +17,7 @@
 #include <unistd.h>
 #include <vector>
 
-class EspressoBased {
+class EspressoBased { // An Abstract Class
 public:
     virtual std::string get_name() const = 0; // Pure virtual function
     virtual double price() const = 0; // Pure virtual function
@@ -25,12 +25,12 @@ public:
     void brew();
     std::vector<Ingredient*>& get_ingredients() { return ingredients; };
 
-    virtual ~EspressoBased(); // Destructor // Virtual ?!
+    virtual ~EspressoBased(); // Virtual Destructor
 
 protected:
     EspressoBased() = default; // Default constructor
     EspressoBased(const EspressoBased& esp); // Copy constructor
-    void operator=(const EspressoBased& esp);
+    void operator=(const EspressoBased& esp); // Assignment Operator (Copy Version)
 
     std::vector<Ingredient*> ingredients;
     std::string name;

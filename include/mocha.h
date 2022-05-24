@@ -12,10 +12,10 @@ public:
     Mocha(); // Default constructor
     Mocha(const Mocha& moc); // Copy constructor
     virtual ~Mocha(); // Destructor
-    void operator=(const Mocha& moc);
+    void operator=(const Mocha& moc); // Assignment Operator (Copy Version)
 
-    virtual std::string get_name() const override { return name; }
-    virtual double price() const override;
+    virtual std::string get_name() const override { return name; } // Override the base class function
+    virtual double price() const override; // Override the base class function
 
     void add_side_item(Ingredient* side);
     std::vector<Ingredient*>& get_side_items() { return side_items; }
