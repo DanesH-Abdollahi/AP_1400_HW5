@@ -6,12 +6,12 @@
 
 // Define All Sub_Ingredients Classes With Macro
 
-#define DEFCLASS(Class_Name, Per_Unit_Price)            \
+#define DEFCLASS(Class_Name, Price_Unit)                \
                                                         \
     class Class_Name : public Ingredient {              \
     public:                                             \
         Class_Name(size_t units)                        \
-            : Ingredient { Per_Unit_Price, units }      \
+            : Ingredient { Price_Unit, units }          \
         {                                               \
             name = #Class_Name;                         \
         }                                               \
